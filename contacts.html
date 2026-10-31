@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ru" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FOLIO — Контакты и Книжный Клуб</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: { brand: { accent: '#C84B31', darkBg: '#0D0D0E', darkCard: '#1A1A1E', lightBg: '#F7F5F0', lightCard: '#FFFFFF' } },
+          fontFamily: { serif: ['Playfair Display', 'serif'], sans: ['Plus Jakarta Sans', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-[#0D0D0E] text-[#F5F5F7] dark:bg-[#0D0D0E] dark:text-[#F5F5F7] light:bg-[#F7F5F0] light:text-[#111113] font-sans transition-colors duration-300 min-h-screen flex flex-col antialiased">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-40 bg-[#0D0D0E]/90 backdrop-blur-md border-b border-neutral-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <a href="index.html" class="text-3xl font-serif font-bold tracking-tight">FOLIO<span class="text-[#C84B31]">.</span></a>
+      <nav class="hidden md:flex items-center gap-8 text-xs font-semibold tracking-widest uppercase">
+        <a href="index.html" class="hover:text-[#C84B31] py-1" data-i18n="nav_home">Главная</a>
+        <a href="catalog.html" class="hover:text-[#C84B31] py-1" data-i18n="nav_catalog">Каталог</a>
+        <a href="about.html" class="hover:text-[#C84B31] py-1" data-i18n="nav_about">О нас</a>
+        <a href="favorites.html" class="hover:text-[#C84B31] py-1" data-i18n="nav_favorites">Избранное</a>
+        <a href="contacts.html" class="text-[#C84B31] border-b-2 border-[#C84B31] py-1" data-i18n="nav_contacts">Контакты</a>
+      </nav>
+      <div class="flex items-center gap-4">
+        <select id="lang-select" class="bg-transparent text-xs font-mono uppercase tracking-wider py-1.5 px-2 border border-neutral-700">
+          <option value="ru">RU</option><option value="uz">UZ</option><option value="en">EN</option>
+        </select>
+        <button id="theme-toggle" class="p-2 border border-neutral-700">
+          <svg id="theme-sun" class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+          <svg id="theme-moon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+        </button>
+        <button id="cart-toggle-btn" class="flex items-center gap-2 bg-[#C84B31] text-white px-3 py-2 text-xs uppercase">
+          <span data-i18n="cart_title">Корзина</span> (<span id="cart-count">0</span>)
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 w-full">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+      
+      <!-- Contact Info -->
+      <div class="lg:col-span-5 space-y-8">
+        <span class="text-[#C84B31] font-mono text-xs uppercase tracking-widest">Контакты & Клуб</span>
+        <h1 class="text-4xl font-serif font-bold uppercase tracking-tight">Свяжитесь с нами</h1>
+        <p class="text-neutral-400 text-sm leading-relaxed">
+          Оставьте заявку на предзаказ редкого издания или вступите в наш закрытый книжный клуб. Все сообщения направляются напрямую арт-директору.
+        </p>
+
+        <div class="space-y-4 border-t border-neutral-800 pt-6 font-mono text-xs">
+          <div>
+            <span class="text-neutral-500 block uppercase">Адрес Флагмана:</span>
+            <span class="text-neutral-200">г. Москва, ул. Редакторская, д. 12</span>
+          </div>
+          <div>
+            <span class="text-neutral-500 block uppercase">Телефон:</span>
+            <span class="text-neutral-200">+7 (495) 800-20-26</span>
+          </div>
+          <div>
+            <span class="text-neutral-500 block uppercase">Часы работы:</span>
+            <span class="text-neutral-200">Ежедневно 10:00 — 22:00</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Telegram API Integrated Form -->
+      <div class="lg:col-span-7 bg-[#1A1A1E] border border-neutral-800 p-8">
+        <form id="contact-form" class="space-y-6">
+          <div>
+            <label class="block text-xs font-mono uppercase tracking-widest mb-2 text-neutral-400">Ваше Имя</label>
+            <input type="text" id="form-name" required class="w-full bg-[#0D0D0E] border border-neutral-800 px-4 py-3 text-xs focus:outline-none focus:border-[#C84B31]">
+          </div>
+          <div>
+            <label class="block text-xs font-mono uppercase tracking-widest mb-2 text-neutral-400">Email или Telegram</label>
+            <input type="text" id="form-contact" required class="w-full bg-[#0D0D0E] border border-neutral-800 px-4 py-3 text-xs focus:outline-none focus:border-[#C84B31]">
+          </div>
+          <div>
+            <label class="block text-xs font-mono uppercase tracking-widest mb-2 text-neutral-400">Сообщение / Заявка на предзаказ</label>
+            <textarea id="form-message" rows="4" required class="w-full bg-[#0D0D0E] border border-neutral-800 px-4 py-3 text-xs focus:outline-none focus:border-[#C84B31]"></textarea>
+          </div>
+          <button type="submit" class="w-full bg-[#C84B31] text-white py-4 text-xs font-semibold uppercase tracking-widest hover:bg-neutral-800 transition-colors">
+            Отправить сообщение в Telegram
+          </button>
+          <p id="form-status" class="text-xs font-mono text-center hidden"></p>
+        </form>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Cart Drawer -->
+  <div id="cart-drawer" class="fixed inset-0 z-50 overflow-hidden pointer-events-none opacity-0 transition-opacity">
+    <div id="cart-overlay" class="absolute inset-0 bg-black/70"></div>
+    <div class="fixed inset-y-0 right-0 max-w-full flex pl-10">
+      <div class="w-screen max-w-md bg-[#0D0D0E] border-l border-neutral-800 p-6 flex flex-col justify-between pointer-events-auto transform translate-x-full transition-transform" id="cart-content">
+        <div class="flex items-center justify-between border-b border-neutral-800 pb-4">
+          <h2 class="font-serif text-xl font-bold uppercase" data-i18n="cart_title">Корзина</h2>
+          <button id="cart-close-btn" class="p-2 text-neutral-400 hover:text-white">&times;</button>
+        </div>
+        <div id="cart-items" class="flex-grow overflow-y-auto py-6 space-y-4"></div>
+        <div class="border-t border-neutral-800 pt-4 space-y-4">
+          <div class="flex justify-between text-base font-semibold">
+            <span data-i18n="cart_total">Итого:</span>
+            <span id="cart-total-price" class="font-mono text-[#C84B31]">0 ₽</span>
+          </div>
+          <button onclick="checkout()" class="w-full bg-[#C84B31] text-white py-3 text-xs uppercase" data-i18n="cart_checkout">Оформить заказ</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="bg-[#0D0D0E] border-t border-neutral-800 py-8 text-center text-xs text-neutral-500">
+    <p>© 2026 FOLIO BOOKSHOP. EDITORIAL DESIGN SYSTEM.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

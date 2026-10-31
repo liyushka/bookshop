@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ru" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FOLIO — Editorial Bookshop & Cultural Club</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              accent: '#C84B31',
+              darkBg: '#0D0D0E',
+              darkCard: '#1A1A1E',
+              lightBg: '#F7F5F0',
+              lightCard: '#FFFFFF',
+              darkText: '#F5F5F7',
+              lightText: '#111113'
+            }
+          },
+          fontFamily: {
+            serif: ['Playfair Display', 'Georgia', 'serif'],
+            sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-[#0D0D0E] text-[#F5F5F7] dark:bg-[#0D0D0E] dark:text-[#F5F5F7] light:bg-[#F7F5F0] light:text-[#111113] font-sans transition-colors duration-300 min-h-screen flex flex-col antialiased">
+
+  <!-- Header / Navigation -->
+  <header class="sticky top-0 z-40 bg-[#0D0D0E]/90 dark:bg-[#0D0D0E]/90 light:bg-[#F7F5F0]/90 backdrop-blur-md border-b border-neutral-800 dark:border-neutral-800 light:border-neutral-300 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="index.html" class="flex items-center gap-3 group">
+        <span class="text-3xl font-serif font-bold tracking-tight text-[#F5F5F7] dark:text-[#F5F5F7] light:text-[#111113]">FOLIO<span class="text-[#C84B31]">.</span></span>
+        <span class="text-[10px] tracking-widest uppercase border border-neutral-700 dark:border-neutral-700 light:border-neutral-300 px-2 py-0.5 text-neutral-400 dark:text-neutral-400 light:text-neutral-600 font-mono hidden sm:inline-block">EST. 2026</span>
+      </a>
+
+      <!-- Main Navigation -->
+      <nav class="hidden md:flex items-center gap-8 text-xs font-semibold tracking-widest uppercase">
+        <a href="index.html" class="text-[#C84B31] transition-colors py-1 border-b-2 border-[#C84B31]" data-i18n="nav_home">Главная</a>
+        <a href="catalog.html" class="hover:text-[#C84B31] transition-colors py-1 border-b-2 border-transparent hover:border-[#C84B31]" data-i18n="nav_catalog">Каталог</a>
+        <a href="about.html" class="hover:text-[#C84B31] transition-colors py-1 border-b-2 border-transparent hover:border-[#C84B31]" data-i18n="nav_about">О нас</a>
+        <a href="favorites.html" class="hover:text-[#C84B31] transition-colors py-1 border-b-2 border-transparent hover:border-[#C84B31]" data-i18n="nav_favorites">Избранное</a>
+        <a href="contacts.html" class="hover:text-[#C84B31] transition-colors py-1 border-b-2 border-transparent hover:border-[#C84B31]" data-i18n="nav_contacts">Контакты</a>
+      </nav>
+
+      <!-- Utility Controls -->
+      <div class="flex items-center gap-4">
+        
+        <!-- Language Selector -->
+        <div class="relative group">
+          <select id="lang-select" class="bg-transparent text-xs font-mono uppercase tracking-wider py-1.5 px-2 border border-neutral-700 dark:border-neutral-700 light:border-neutral-300 rounded-none cursor-pointer focus:outline-none focus:border-[#C84B31] transition-colors">
+            <option value="ru" class="bg-[#0D0D0E] text-white">RU</option>
+            <option value="uz" class="bg-[#0D0D0E] text-white">UZ</option>
+            <option value="en" class="bg-[#0D0D0E] text-white">EN</option>
+          </select>
+        </div>
+
+        <!-- Theme Toggle Button -->
+        <button id="theme-toggle" class="p-2 border border-neutral-700 dark:border-neutral-700 light:border-neutral-300 hover:border-[#C84B31] transition-colors" aria-label="Toggle Theme">
+          <svg id="theme-sun" class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+          <svg id="theme-moon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+        </button>
+
+        <!-- Favorites Icon Link -->
+        <a href="favorites.html" class="p-2 border border-neutral-700 dark:border-neutral-700 light:border-neutral-300 hover:border-[#C84B31] transition-colors relative">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+          <span id="fav-count" class="absolute -top-2 -right-2 bg-[#C84B31] text-white text-[10px] font-bold w-4 h-4 flex items-center justify-center rounded-full">0</span>
+        </a>
+
+        <!-- Cart Trigger Button -->
+        <button id="cart-toggle-btn" class="flex items-center gap-2 bg-[#C84B31] text-white px-3 py-2 text-xs font-semibold tracking-wider uppercase hover:bg-neutral-800 transition-colors">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+          <span class="hidden sm:inline" data-i18n="cart_title">Корзина</span>
+          (<span id="cart-count">0</span>)
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main class="flex-grow">
+    
+    <!-- Hero Section -->
+    <section class="relative border-b border-neutral-800 dark:border-neutral-800 light:border-neutral-300 overflow-hidden py-20 lg:py-28">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          <div class="lg:col-span-7 space-y-8">
+            <div class="inline-flex items-center gap-2 px-3 py-1 border border-[#C84B31] text-[#C84B31] text-xs font-mono tracking-widest uppercase">
+              <span class="w-2 h-2 bg-[#C84B31] animate-ping"></span>
+              <span data-i18n="hero_badge">Новая коллекции 2026</span>
+            </div>
+            
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-serif font-bold tracking-tight leading-none text-[#F5F5F7] dark:text-[#F5F5F7] light:text-[#111113]">
+              <span data-i18n="hero_title1">Искусство</span> <br>
+              <span class="italic font-normal text-[#C84B31]" data-i18n="hero_title2">Печатного Слова</span>
+            </h1>
+            
+            <p class="text-neutral-400 dark:text-neutral-400 light:text-neutral-600 text-lg max-w-xl leading-relaxed font-light" data-i18n="hero_subtitle">
+              Кураторская подборка редких изданий, философии, дизайна и вневременной художественной литературы в безупречном оформлении.
+            </p>
+
+            <div class="flex flex-wrap gap-4 pt-4">
+              <a href="catalog.html" class="bg-[#C84B31] hover:bg-neutral-800 text-white dark:hover:bg-white dark:hover:text-black font-semibold text-xs tracking-widest uppercase px-8 py-4 border border-[#C84B31] transition-all" data-i18n="hero_cta">
+                Исследовать каталог
+              </a>
+              <a href="about.html" class="border border-neutral-700 dark:border-neutral-700 light:border-neutral-300 hover:border-[#C84B31] text-xs tracking-widest uppercase px-8 py-4 transition-colors" data-i18n="hero_secondary">
+                О концепции
+              </a>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 flex justify-center">
+            <div class="tilt-card relative w-full max-w-md bg-[#1A1A1E] dark:bg-[#1A1A1E] light:bg-white p-6 border border-neutral-800 dark:border-neutral-800 light:border-neutral-300 shadow-2xl">
+              <div class="relative aspect-[3/4] overflow-hidden bg-neutral-900">
+                <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&q=80&w=800" alt="Book Cover" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-6">
+                  <span class="text-[#C84B31] text-xs font-mono uppercase tracking-widest">Бестселлер</span>
+                  <h3 class="font-serif text-2xl text-white font-bold mt-1">Design Systems & Aesthetics</h3>
+                  <p class="text-neutral-300 text-xs mt-1">Josef Müller-Brockmann</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Book of the Month -->
+    <section class="py-20 border-b border-neutral-800 dark:border-neutral-800 light:border-neutral-300 bg-[#1A1A1E]/30 dark:bg-[#1A1A1E]/30 light:bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-12">
+          <div class="w-full md:w-1/2">
+            <div class="tilt-card aspect-[4/3] bg-neutral-900 border border-neutral-800 dark:border-neutral-800 light:border-neutral-300 overflow-hidden relative group">
+              <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&q=80&w=800" alt="Book of the Month" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+              <div class="absolute top-4 left-4 bg-[#C84B31] text-white text-[10px] font-mono px-3 py-1 uppercase tracking-widest">
+                Выбор куратора
+              </div>
+            </div>
+          </div>
+          <div class="w-full md:w-1/2 space-y-6">
+            <span class="text-[#C84B31] font-mono text-xs uppercase tracking-widest" data-i18n="botm_tag">Книга месяца</span>
+            <h2 class="text-3xl sm:text-4xl font-serif font-bold tracking-tight">Эстетика Постмодернизма и Философия Формы</h2>
+            <p class="text-neutral-400 dark:text-neutral-400 light:text-neutral-600 text-sm leading-relaxed">
+              Монументальное исследование того, как графический дизайн и литература XX века переплелись в единую социокультурную систему. Ограниченный тираж в тканевом переплете с тиснением.
+            </p>
+            <div class="flex items-center gap-6 pt-2">
+              <span class="text-2xl font-mono font-bold text-[#C84B31]">3 400 ₽</span>
+              <button onclick="addToCart(101, 'Эстетика Постмодернизма', 3400, 'https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&q=80&w=800')" class="bg-[#C84B31] text-white px-6 py-3 text-xs font-semibold tracking-widest uppercase hover:bg-neutral-800 transition-colors" data-i18n="add_to_cart">
+                В корзину
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bestsellers Carousel Grid -->
+    <section class="py-20 border-b border-neutral-800 dark:border-neutral-800 light:border-neutral-300">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-end mb-12">
+          <div>
+            <span class="text-[#C84B31] font-mono text-xs uppercase tracking-widest" data-i18n="featured_subtitle">Избранное каталога</span>
+            <h2 class="text-3xl font-serif font-bold mt-1" data-i18n="featured_title">Популярные издания</h2>
+          </div>
+          <a href="catalog.html" class="text-xs font-mono uppercase tracking-widest text-neutral-400 hover:text-[#C84B31] transition-colors" data-i18n="view_all">Смотреть все &rarr;</a>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="bestsellers-grid">
+          <!-- Dynamically Populated by app.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Editorial Quote Section -->
+    <section class="py-24 bg-[#1A1A1E]/50 dark:bg-[#1A1A1E]/50 light:bg-neutral-100 border-b border-neutral-800 dark:border-neutral-800 light:border-neutral-300">
+      <div class="max-w-4xl mx-auto px-4 text-center space-y-6">
+        <span class="text-[#C84B31] font-serif text-5xl font-bold">“</span>
+        <blockquote class="text-xl sm:text-2xl font-serif italic text-neutral-200 dark:text-neutral-200 light:text-neutral-800 leading-relaxed" data-i18n="home_quote">
+          Книга — это не просто носитель информации, это архитектурный объект для мысли, созданный из бумаги, типографики и тишины.
+        </blockquote>
+        <p class="text-xs font-mono uppercase tracking-widest text-neutral-500">— FOLIO Editorial Manifesto</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Slide-over Cart Drawer -->
+  <div id="cart-drawer" class="fixed inset-0 z-50 overflow-hidden pointer-events-none transition-opacity duration-300 opacity-0">
+    <div id="cart-overlay" class="absolute inset-0 bg-black/70 backdrop-blur-sm transition-opacity"></div>
+    <div class="fixed inset-y-0 right-0 max-w-full flex pl-10">
+      <div class="w-screen max-w-md bg-[#0D0D0E] dark:bg-[#0D0D0E] light:bg-[#F7F5F0] border-l border-neutral-800 dark:border-neutral-800 light:border-neutral-300 p-6 flex flex-col justify-between pointer-events-auto transform translate-x-full transition-transform duration-300 ease-in-out" id="cart-content">
+        
+        <!-- Cart Header -->
+        <div class="flex items-center justify-between border-b border-neutral-800 dark:border-neutral-800 light:border-neutral-300 pb-4">
+          <h2 class="font-serif text-xl font-bold uppercase tracking-wider" data-i18n="cart_title">Корзина</h2>
+          <button id="cart-close-btn" class="p-2 text-neutral-400 hover:text-white transition-colors">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+          </button>
+        </div>
+
+        <!-- Cart Items List -->
+        <div id="cart-items" class="flex-grow overflow-y-auto py-6 space-y-4">
+          <!-- Rendered via app.js -->
+        </div>
+
+        <!-- Cart Footer -->
+        <div class="border-t border-neutral-800 dark:border-neutral-800 light:border-neutral-300 pt-4 space-y-4">
+          <div class="flex justify-between text-base font-semibold">
+            <span data-i18n="cart_total">Итого:</span>
+            <span id="cart-total-price" class="font-mono text-[#C84B31]">0 ₽</span>
+          </div>
+          <button onclick="checkout()" class="w-full bg-[#C84B31] hover:bg-neutral-800 text-white py-3 text-xs font-semibold tracking-widest uppercase transition-colors" data-i18n="cart_checkout">
+            Оформить заказ
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-[#0D0D0E] dark:bg-[#0D0D0E] light:bg-[#F7F5F0] border-t border-neutral-800 dark:border-neutral-800 light:border-neutral-300 py-12 text-neutral-500 text-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div class="space-y-3">
+        <span class="text-2xl font-serif font-bold text-[#F5F5F7] dark:text-[#F5F5F7] light:text-[#111113]">FOLIO<span class="text-[#C84B31]">.</span></span>
+        <p class="text-neutral-400 text-xs" data-i18n="footer_desc">Книжный магазин и независимое издательство. Швейцарская типографика, эстетика и редкие книги.</p>
+      </div>
+      <div>
+        <h4 class="font-mono uppercase tracking-widest text-[#F5F5F7] dark:text-[#F5F5F7] light:text-[#111113] mb-3">Навигация</h4>
+        <ul class="space-y-2">
+          <li><a href="index.html" class="hover:text-[#C84B31]">Главная</a></li>
+          <li><a href="catalog.html" class="hover:text-[#C84B31]">Каталог</a></li>
+          <li><a href="about.html" class="hover:text-[#C84B31]">О издательстве</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-mono uppercase tracking-widest text-[#F5F5F7] dark:text-[#F5F5F7] light:text-[#111113] mb-3">Контакты</h4>
+        <p>ул. Редакторская, 12, Москва</p>
+        <p>info@folio-books.com</p>
+      </div>
+      <div>
+        <h4 class="font-mono uppercase tracking-widest text-[#F5F5F7] dark:text-[#F5F5F7] light:text-[#111113] mb-3">Сообщество</h4>
+        <p>Присоединяйтесь к нашему Telegram-каналу для анонсов закрытых презентаций.</p>
+      </div>
+    </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 mt-8 border-t border-neutral-800/50 flex justify-between items-center font-mono text-[10px]">
+      <p>© 2026 FOLIO BOOKSHOP. ALL RIGHTS RESERVED.</p>
+      <p>DESIGN SYSTEM: SWISS MONOCHROME</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

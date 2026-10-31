@@ -1,0 +1,66 @@
+/* Custom Editorial Swiss Typography & Animations - NO GRADIENTS */
+
+@layer base {
+  body.light {
+    background-color: #F7F5F0 !important;
+    color: #111113 !important;
+  }
+
+  body.light header {
+    background-color: rgba(247, 245, 240, 0.9) !important;
+    border-color: #E2DFD8 !important;
+  }
+
+  body.light .bg-\[\#1A1A1E\] {
+    background-color: #FFFFFF !important;
+    border-color: #E2DFD8 !important;
+  }
+
+  body.light .border-neutral-800 {
+    border-color: #E2DFD8 !important;
+  }
+
+  body.light .text-neutral-400 {
+    color: #55555C !important;
+  }
+
+  body.light #cart-drawer #cart-content {
+    background-color: #F7F5F0 !important;
+    border-color: #E2DFD8 !important;
+  }
+}
+
+/* Book Hover Tilt Effect */
+.tilt-card {
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease;
+  transform-style: preserve-3d;
+}
+
+.tilt-card:hover {
+  transform: translateY(-8px) rotateX(4deg) rotateY(-2deg);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0D0D0E;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2A2A2E;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #C84B31;
+}
+
+/* Active Filter Style */
+.active-filter {
+  background-color: #C84B31 !important;
+  border-color: #C84B31 !important;
+  color: #FFFFFF !important;
+}

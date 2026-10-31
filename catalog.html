@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ru" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FOLIO — Каталог</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: { accent: '#C84B31', darkBg: '#0D0D0E', darkCard: '#1A1A1E', lightBg: '#F7F5F0', lightCard: '#FFFFFF', darkText: '#F5F5F7', lightText: '#111113' }
+          },
+          fontFamily: { serif: ['Playfair Display', 'serif'], sans: ['Plus Jakarta Sans', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-[#0D0D0E] text-[#F5F5F7] dark:bg-[#0D0D0E] dark:text-[#F5F5F7] light:bg-[#F7F5F0] light:text-[#111113] font-sans transition-colors duration-300 min-h-screen flex flex-col antialiased">
+
+  <!-- Navigation -->
+  <header class="sticky top-0 z-40 bg-[#0D0D0E]/90 dark:bg-[#0D0D0E]/90 light:bg-[#F7F5F0]/90 backdrop-blur-md border-b border-neutral-800 dark:border-neutral-800 light:border-neutral-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <a href="index.html" class="text-3xl font-serif font-bold tracking-tight">FOLIO<span class="text-[#C84B31]">.</span></a>
+      <nav class="hidden md:flex items-center gap-8 text-xs font-semibold tracking-widest uppercase">
+        <a href="index.html" class="hover:text-[#C84B31] transition-colors py-1" data-i18n="nav_home">Главная</a>
+        <a href="catalog.html" class="text-[#C84B31] border-b-2 border-[#C84B31] py-1" data-i18n="nav_catalog">Каталог</a>
+        <a href="about.html" class="hover:text-[#C84B31] transition-colors py-1" data-i18n="nav_about">О нас</a>
+        <a href="favorites.html" class="hover:text-[#C84B31] transition-colors py-1" data-i18n="nav_favorites">Избранное</a>
+        <a href="contacts.html" class="hover:text-[#C84B31] transition-colors py-1" data-i18n="nav_contacts">Контакты</a>
+      </nav>
+      <div class="flex items-center gap-4">
+        <select id="lang-select" class="bg-transparent text-xs font-mono uppercase tracking-wider py-1.5 px-2 border border-neutral-700">
+          <option value="ru">RU</option><option value="uz">UZ</option><option value="en">EN</option>
+        </select>
+        <button id="theme-toggle" class="p-2 border border-neutral-700">
+          <svg id="theme-sun" class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+          <svg id="theme-moon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+        </button>
+        <a href="favorites.html" class="p-2 border border-neutral-700 relative">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+          <span id="fav-count" class="absolute -top-2 -right-2 bg-[#C84B31] text-white text-[10px] font-bold w-4 h-4 flex items-center justify-center rounded-full">0</span>
+        </a>
+        <button id="cart-toggle-btn" class="flex items-center gap-2 bg-[#C84B31] text-white px-3 py-2 text-xs font-semibold uppercase">
+          <span data-i18n="cart_title">Корзина</span> (<span id="cart-count">0</span>)
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
+    <div class="border-b border-neutral-800 pb-8 mb-8">
+      <h1 class="text-4xl font-serif font-bold uppercase tracking-tight" data-i18n="cat_title">Каталог Изданий</h1>
+      <p class="text-neutral-400 text-sm mt-2" data-i18n="cat_subtitle">Полное собрание художественной литературы, книг по дизайну и философии.</p>
+    </div>
+
+    <!-- Search & Filters Toolbar -->
+    <div class="flex flex-col md:flex-row justify-between items-stretch md:items-center gap-4 mb-8">
+      <!-- Search Input -->
+      <div class="relative flex-grow max-w-md">
+        <input type="text" id="catalog-search" placeholder="Поиск по названию или автору..." class="w-full bg-[#1A1A1E] dark:bg-[#1A1A1E] light:bg-white border border-neutral-800 dark:border-neutral-800 light:border-neutral-300 px-4 py-2.5 text-xs focus:outline-none focus:border-[#C84B31]">
+      </div>
+
+      <!-- Filters & Sorting -->
+      <div class="flex flex-wrap items-center gap-3">
+        <button class="filter-btn active-filter text-xs font-mono px-3 py-2 border border-[#C84B31] bg-[#C84B31] text-white" data-genre="all" data-i18n="filter_all">Все</button>
+        <button class="filter-btn text-xs font-mono px-3 py-2 border border-neutral-800 hover:border-[#C84B31]" data-genre="fiction" data-i18n="filter_fiction">Художественная</button>
+        <button class="filter-btn text-xs font-mono px-3 py-2 border border-neutral-800 hover:border-[#C84B31]" data-genre="design" data-i18n="filter_design">Дизайн</button>
+        <button class="filter-btn text-xs font-mono px-3 py-2 border border-neutral-800 hover:border-[#C84B31]" data-genre="philosophy" data-i18n="filter_philosophy">Философия</button>
+
+        <select id="catalog-sort" class="bg-[#1A1A1E] dark:bg-[#1A1A1E] light:bg-white border border-neutral-800 dark:border-neutral-800 light:border-neutral-300 text-xs font-mono py-2 px-3 focus:outline-none">
+          <option value="default" data-i18n="sort_default">По умолчанию</option>
+          <option value="price-asc" data-i18n="sort_price_asc">Цена: по возрастанию</option>
+          <option value="price-desc" data-i18n="sort_price_desc">Цена: по убыванию</option>
+          <option value="rating" data-i18n="sort_rating">По рейтингу</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Catalog Books Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="catalog-grid">
+      <!-- Populated via app.js -->
+    </div>
+  </main>
+
+  <!-- Cart Drawer -->
+  <div id="cart-drawer" class="fixed inset-0 z-50 overflow-hidden pointer-events-none opacity-0 transition-opacity">
+    <div id="cart-overlay" class="absolute inset-0 bg-black/70"></div>
+    <div class="fixed inset-y-0 right-0 max-w-full flex pl-10">
+      <div class="w-screen max-w-md bg-[#0D0D0E] dark:bg-[#0D0D0E] light:bg-[#F7F5F0] border-l border-neutral-800 p-6 flex flex-col justify-between pointer-events-auto transform translate-x-full transition-transform" id="cart-content">
+        <div class="flex items-center justify-between border-b border-neutral-800 pb-4">
+          <h2 class="font-serif text-xl font-bold uppercase" data-i18n="cart_title">Корзина</h2>
+          <button id="cart-close-btn" class="p-2 text-neutral-400 hover:text-white">&times;</button>
+        </div>
+        <div id="cart-items" class="flex-grow overflow-y-auto py-6 space-y-4"></div>
+        <div class="border-t border-neutral-800 pt-4 space-y-4">
+          <div class="flex justify-between text-base font-semibold">
+            <span data-i18n="cart_total">Итого:</span>
+            <span id="cart-total-price" class="font-mono text-[#C84B31]">0 ₽</span>
+          </div>
+          <button onclick="checkout()" class="w-full bg-[#C84B31] text-white py-3 text-xs uppercase" data-i18n="cart_checkout">Оформить заказ</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="bg-[#0D0D0E] border-t border-neutral-800 py-8 text-center text-xs text-neutral-500">
+    <p>© 2026 FOLIO BOOKSHOP. EDITORIAL DESIGN SYSTEM.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
